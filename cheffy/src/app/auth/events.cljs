@@ -1,8 +1,28 @@
 (ns app.auth.events
-  (:require [re-frame.core :refer [reg-event-db reg-event-fx]]))
+  (:require [re-frame.core :refer [reg-event-db reg-event-fx after reg-cofx]]
+            [cljs.reader :refer [read-string]]))
+
+(def session-key "app-session")
+
+(defn set-user-session!
+  [{:keys [auth]}]
+  (when (:uid auth) (.setItem js/localStorage session-key (str auth))))
+
+(defn remove-user-session!
+  []
+  (.removeItem js/localStorage session-key))
+
+(def set-user-interceptor [(after set-user-session!)])
+(def remove-user-interceptor [(after remove-user-session!)])
+
+(reg-cofx
+  :session-user
+  (fn [cofx _]
+    (assoc cofx :session-user (read-string (.getItem js/localStorage session-key)))))
 
 (reg-event-fx
   :log-in
+  set-user-interceptor
   (fn [{:keys [db]} [_ {:keys [email password]}]]
     (let [user              (get-in db [:users email])
           correct-password? (= (get-in user [:profile :password]) password)]
@@ -16,6 +36,7 @@
 
 (reg-event-fx
   :sign-up
+  set-user-interceptor
   (fn [{:keys [db]} [_ {:keys [first-name last-name email password]}]]
     {:db       (-> db
                    (assoc-in [:auth :uid] email)
@@ -31,6 +52,7 @@
 
 (reg-event-fx
   :log-out
+  remove-user-interceptor
   (fn [{:keys [db]} [_ _]]
     {:db       (assoc-in db [:auth :uid] nil)
      :dispatch [:active-nav :recipes]}))
@@ -43,6 +65,7 @@
 
 (reg-event-fx
   :delete-profile
+  remove-user-interceptor
   (fn [{:keys [db]} _]
     (let [uid (get-in db [:auth :uid])]
       {:db       (-> db

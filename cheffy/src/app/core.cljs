@@ -4,6 +4,7 @@
             ["@smooth-ui/core-sc" :refer [Button Col Grid Normalize Row ThemeProvider]]
 
             [app.db]
+            [app.router :as router]
             [app.theme :refer [app-theme]]
 
             [app.auth.events]
@@ -52,5 +53,6 @@
 
 (defn ^:export init
   []
+  (router/start!)
   (rf/dispatch-sync [:initialize-db])
   (start))

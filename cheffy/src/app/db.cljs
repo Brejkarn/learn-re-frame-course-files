@@ -302,7 +302,8 @@
                                                                                        :notifications 6
                                                                                        :updated-at    1538697210537}}}}})
 
-(rf/reg-event-db
+(rf/reg-event-fx
   :initialize-db
-  (fn [_ _]
-    initial-app-db))
+  [(rf/inject-cofx :session-user)]
+  (fn [{:keys [session-user]} _]
+    {:db (assoc-in initial-app-db [:auth] session-user)}))
