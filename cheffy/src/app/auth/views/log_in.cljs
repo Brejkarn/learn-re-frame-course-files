@@ -7,8 +7,8 @@
 
 (defn log-in
   []
-  (let [initial-values {:email    ""
-                        :password ""}
+  (let [initial-values {:email    "kalle@kula.com"
+                        :password "password"}
         values         (r/atom initial-values)]
     (fn []
       [:> Row {:justify-content "center"}
@@ -30,6 +30,4 @@
                :on-click #(rf/dispatch [:active-nav :sign-up])}
            "New chef? Create an account!"]]
          [:> Box
-          [:> Button {:variant    "primary"
-                      :aria-label "Log In!"
-                      :on-click   #(rf/dispatch [:log-in @values])} "Log in"]]]]])))
+          [:> Button {:on-click #(rf/dispatch [:log-in @values])} "Log in"]]]]])))

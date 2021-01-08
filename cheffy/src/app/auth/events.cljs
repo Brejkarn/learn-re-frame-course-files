@@ -10,6 +10,6 @@
         (not user) {:db (assoc-in db [:errors :email] "User not found")}
         (not correct-password?) {:db (assoc-in db [:errors :password] "Wrong password")}
         correct-password? {:db       (-> db
-                                         (assoc-in [:auth :uid] email)
+                                         (assoc-in [:auth :uid] (:uid user))
                                          (update-in [:errors] dissoc :email :password))
                            :dispatch [:active-nav :saved]}))))

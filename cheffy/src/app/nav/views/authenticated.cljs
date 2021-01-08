@@ -1,4 +1,4 @@
-(ns app.nav.views.auth
+(ns app.nav.views.authenticated
   (:require [re-frame.core :as rf]
             ["@smooth-ui/core-sc" :refer [Box]]
             [app.nav.views.item :refer [item]]))

@@ -7,6 +7,7 @@
             [app.theme :refer [app-theme]]
 
             [app.auth.events]
+            [app.auth.subs]
             [app.auth.views.profile :refer [profile]]
             [app.auth.views.sign-up :refer [sign-up]]
             [app.auth.views.log-in :refer [log-in]]
