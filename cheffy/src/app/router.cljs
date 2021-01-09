@@ -15,12 +15,20 @@
                   "sign-up"       :sign-up
                   "log-in"        :log-in}])
 
-(defn start!
+(def history
   []
-  (let [dispatch #(js/console.log %)
+  (let [dispatch #(rf/dispatch [:route-change %])
         match    #(bidi/match-route routes %)]
     (pushy/start! (pushy/pushy dispatch match))))
+
+(defn start!
+  []
+  (pushy/start! history))
 
 (defn path-for
   [route]
   (bidi/path-for routes route))
+
+(defn set-token!
+  [token]
+  (pushy/set-token! history token))

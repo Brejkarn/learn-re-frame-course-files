@@ -4,33 +4,29 @@
             [app.nav.views.item :refer [item]]
             [app.router :as router]))
 
-(defn set-active-nav
-  [nav]
-  (rf/dispatch [:active-nav nav]))
-
 (defn authenticated
   []
   (let [active-nav @(rf/subscribe [:active-nav])
         nav-items  [{:id       :saved
                      :name     "Saved"
                      :href     (router/path-for :saved)
-                     :dispatch #(set-active-nav :saved)}
+                     :dispatch #(rf/dispatch [:active-nav :saved])}
                     {:id       :recipes
                      :name     "Recipes"
                      :href     (router/path-for :recipes)
-                     :dispatch #(set-active-nav :recipes)}
+                     :dispatch #(rf/dispatch [:active-nav :recipes])}
                     {:id       :inboxes
                      :name     "Inbox"
                      :href     (router/path-for :inboxes)
-                     :dispatch #(set-active-nav :inboxes)}
+                     :dispatch #(rf/dispatch [:active-nav :inboxes])}
                     {:id       :become-a-chef
                      :name     "Chef"
                      :href     (router/path-for :become-a-chef)
-                     :dispatch #(set-active-nav :become-a-chef)}
+                     :dispatch #(rf/dispatch [:active-nav :become-a-chef])}
                     {:id       :profile
                      :name     "Profile"
                      :href     (router/path-for :profile)
-                     :dispatch #(set-active-nav :profile)}]]
+                     :dispatch #(rf/dispatch [:active-nav :profile])}]]
     [:> Box {:display         "flex"
              :justify-content "flex-end"
              :py              1}

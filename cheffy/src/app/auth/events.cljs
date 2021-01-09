@@ -32,7 +32,8 @@
         correct-password? {:db       (-> db
                                          (assoc-in [:auth :uid] (:uid user))
                                          (update-in [:errors] dissoc :email :password))
-                           :dispatch [:active-nav :saved]}))))
+                           :dispatch [:active-nav :saved]
+                           :navigate-to {:path "/saved"}}))))
 
 (reg-event-fx
   :sign-up
@@ -48,14 +49,16 @@
                                                        :img        "img/avatar.jpg"}
                                              :saved   #{}
                                              :inboxes {}}))
-     :dispatch [:active-nav :saved]}))
+     :dispatch [:active-nav :saved]
+     :navigate-to {:path "/saved"}}))
 
 (reg-event-fx
   :log-out
   remove-user-interceptor
   (fn [{:keys [db]} [_ _]]
-    {:db       (assoc-in db [:auth :uid] nil)
-     :dispatch [:active-nav :recipes]}))
+    {:db          (assoc-in db [:auth :uid] nil)
+     :dispatch    [:active-nav :recipes]
+     :navigate-to {:path "/recipes"}}))
 
 (reg-event-db
   :update-profile
@@ -68,7 +71,8 @@
   remove-user-interceptor
   (fn [{:keys [db]} _]
     (let [uid (get-in db [:auth :uid])]
-      {:db       (-> db
-                     (assoc-in [:auth :uid] nil)
-                     (update-in [:users] dissoc uid))
-       :dispatch [:active-nav :recipes]})))
+      {:db          (-> db
+                        (assoc-in [:auth :uid] nil)
+                        (update-in [:users] dissoc uid))
+       :dispatch    [:active-nav :recipes]
+       :navigate-to {:path "/recipes"}})))
