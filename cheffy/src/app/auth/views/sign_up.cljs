@@ -2,6 +2,7 @@
   (:require [re-frame.core :as rf]
             [reagent.core :as r]
             ["@smooth-ui/core-sc" :refer [Row Col Box Button FormGroup Label Input]]
+            [app.router :as router]
             [app.components.page-nav :refer [page-nav]]
             [app.components.form-group :refer [form-group]]))
 
@@ -36,8 +37,8 @@
                  :justify-content "space-between"}
          [:> Box {:py 1
                   :pr 1}
-          [:a {:href     "#sign-up"
-               :on-click #(rf/dispatch [:active-nav :log-in])}
+          [:a {:href     (router/path-for :log-in)
+               :on-click #(rf/dispatch [:active-page :log-in])}
            "Already have an account? Log in here!"]]
          [:> Box
           [:> Button {:on-click #(rf/dispatch [:sign-up @values])} "Sign up"]]]]])))

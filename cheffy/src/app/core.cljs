@@ -15,7 +15,7 @@
 
             [app.become-a-chef.views.become-a-chef :refer [become-a-chef]]
 
-            [app.inbox.views.inbox :refer [inbox]]
+            [app.inbox.views.inboxes :refer [inboxes]]
 
             [app.recipes.views.recipes :refer [recipes]]
 
@@ -30,13 +30,13 @@
     :sign-up [sign-up]
     :log-in [log-in]
     :become-a-chef [become-a-chef]
-    :inbox [inbox]
+    :inboxes [inboxes]
     :recipes [recipes]
     [recipes]))
 
 (defn app
   []
-  (let [active-nav @(rf/subscribe [:active-nav])]
+  (let [active-page @(rf/subscribe [:active-page])]
     [:<>
      [:> Normalize]
      [:> ThemeProvider {:theme app-theme}
@@ -44,7 +44,7 @@
        [:> Row
         [:> Col
          [nav]
-         [pages active-nav]]]]]]))
+         [pages active-page]]]]]]))
 
 (defn ^:dev/after-load start
   []

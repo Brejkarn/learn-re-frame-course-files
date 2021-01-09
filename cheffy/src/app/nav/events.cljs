@@ -14,5 +14,10 @@
 
 (reg-event-db
   :active-nav
-  (fn [db [_ nav]]
-    (assoc-in db [:nav :active-nav] nav)))
+  (fn [db [_ active-nav]]
+    (assoc-in db [:nav :active-nav] active-nav)))
+
+(reg-event-db
+  :active-page
+  (fn [db [_ active-page]]
+    (assoc-in db [:nav :active-page] active-page)))

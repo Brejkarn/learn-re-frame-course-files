@@ -14,7 +14,8 @@
     [:<>
      [page-nav {:center "profile"
                 :right  [:> Button {:variant  "light"
-                                    :on-click #(rf/dispatch [:log-out])} "Log Out"]}]
+                                    :on-click #(rf/dispatch [:log-out])}
+                         "Log Out"]}]
      [:> Row {:justify-content "center"}
       [:> Col {:xs 12 :sm 6}
        [:> Box {:background-color "white"

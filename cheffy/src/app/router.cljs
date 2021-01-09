@@ -5,7 +5,7 @@
 
 (def routes ["/" {""              :recipes
                   "become-a-chef" :become-a-chef
-                  "saved/"        :saved
+                  "saved"        :saved
                   "recipes"       {""            :recipes
                                    [:recipes-id] :recipe}
                   "inbox/"        {""          :inboxes
@@ -16,10 +16,9 @@
                   "log-in"        :log-in}])
 
 (def history
-  []
   (let [dispatch #(rf/dispatch [:route-change %])
         match    #(bidi/match-route routes %)]
-    (pushy/start! (pushy/pushy dispatch match))))
+    (pushy/pushy dispatch match)))
 
 (defn start!
   []

@@ -29,35 +29,35 @@
       (cond
         (not user) {:db (assoc-in db [:errors :email] "User not found")}
         (not correct-password?) {:db (assoc-in db [:errors :password] "Wrong password")}
-        correct-password? {:db       (-> db
-                                         (assoc-in [:auth :uid] (:uid user))
-                                         (update-in [:errors] dissoc :email :password))
-                           :dispatch [:active-nav :saved]
+        correct-password? {:db          (-> db
+                                            (assoc-in [:auth :uid] (:uid user))
+                                            (update-in [:errors] dissoc :email :password))
+                           :dispatch    [:active-page :saved]
                            :navigate-to {:path "/saved"}}))))
 
 (reg-event-fx
   :sign-up
   set-user-interceptor
   (fn [{:keys [db]} [_ {:keys [first-name last-name email password]}]]
-    {:db       (-> db
-                   (assoc-in [:auth :uid] email)
-                   (assoc-in [:users email] {:id      email
-                                             :profile {:first-name first-name
-                                                       :last-name  last-name
-                                                       :email      email
-                                                       :password   password
-                                                       :img        "img/avatar.jpg"}
-                                             :saved   #{}
-                                             :inboxes {}}))
-     :dispatch [:active-nav :saved]
+    {:db          (-> db
+                      (assoc-in [:auth :uid] email)
+                      (assoc-in [:users email] {:id      email
+                                                :profile {:first-name first-name
+                                                          :last-name  last-name
+                                                          :email      email
+                                                          :password   password
+                                                          :img        "img/avatar.jpg"}
+                                                :saved   #{}
+                                                :inboxes {}}))
+     :dispatch    [:active-page :saved]
      :navigate-to {:path "/saved"}}))
 
 (reg-event-fx
   :log-out
   remove-user-interceptor
-  (fn [{:keys [db]} [_ _]]
+  (fn [{:keys [db]} _]
     {:db          (assoc-in db [:auth :uid] nil)
-     :dispatch    [:active-nav :recipes]
+     :dispatch    [:active-page :recipes]
      :navigate-to {:path "/recipes"}}))
 
 (reg-event-db
@@ -74,5 +74,5 @@
       {:db          (-> db
                         (assoc-in [:auth :uid] nil)
                         (update-in [:users] dissoc uid))
-       :dispatch    [:active-nav :recipes]
+       :dispatch    [:active-page :recipes]
        :navigate-to {:path "/recipes"}})))
