@@ -23,3 +23,18 @@
   :active-page
   (fn [db [_ active-page]]
     (assoc-in db [:nav :active-page] active-page)))
+
+;(reg-event-db
+;  :open-modal
+;  (fn [db [_ modal-name]]
+;    (assoc-in db [:nav :active-modal] modal-name)))
+;
+;(reg-event-db
+;  :close-modal
+;  (fn [db _]
+;    (assoc-in db [:nav :active-modal] nil)))
+
+(reg-event-db
+  :toggle-modal
+  (fn [db [_ modal-name]]
+    (assoc-in db [:nav :active-modal] modal-name)))

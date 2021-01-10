@@ -2,7 +2,9 @@
   (:require [re-frame.core :as rf]
             ["@smooth-ui/core-sc" :refer [Box Col Row]]
             [app.components.page-nav :refer [page-nav]]
-            [app.recipes.views.recipe-info :refer [recipe-info]]))
+            [app.recipes.views.recipe-info :refer [recipe-info]]
+            [app.recipes.views.recipe-image :refer [recipe-image]]
+            ))
 
 (defn recipe
   []
@@ -15,7 +17,7 @@
         [:> Box {:pb 20}
          [recipe-info]]
         [:> Box {:pb 20}
-         "Recipe Image"]
+         [recipe-image]]
         [:> Box {:pb 20}
          "Recipe Ingredients"]]
        [:> Col {:xs 12 :sm 6}

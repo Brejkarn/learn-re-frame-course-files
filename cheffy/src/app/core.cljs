@@ -44,7 +44,7 @@
     [:<>
      [:> Normalize]
      [:> ThemeProvider {:theme app-theme}
-      [:> Grid {:fluid false}
+      [:> Grid {:fluid false :max-width 768}
        [:> Row
         [:> Col
          [nav]
