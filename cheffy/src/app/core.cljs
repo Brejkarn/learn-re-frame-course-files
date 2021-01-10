@@ -18,6 +18,7 @@
             [app.inbox.views.inboxes :refer [inboxes]]
 
             [app.recipes.views.recipes :refer [recipes]]
+            [app.recipes.subs]
 
             [app.nav.views.nav :refer [nav]]
             [app.nav.events]

@@ -5,9 +5,9 @@
 
 (def routes ["/" {""              :recipes
                   "become-a-chef" :become-a-chef
-                  "saved"        :saved
-                  "recipes"       {""            :recipes
-                                   [:recipes-id] :recipe}
+                  "saved"         :saved
+                  "recipes/"      {""           :recipes
+                                   [:recipe-id] :recipe}
                   "inbox/"        {""          :inboxes
                                    [:inbox-id] :inbox}
 
@@ -24,9 +24,7 @@
   []
   (pushy/start! history))
 
-(defn path-for
-  [route]
-  (bidi/path-for routes route))
+(def path-for (partial bidi/path-for routes))
 
 (defn set-token!
   [token]
