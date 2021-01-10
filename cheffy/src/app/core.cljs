@@ -18,6 +18,8 @@
             [app.inbox.views.inboxes :refer [inboxes]]
 
             [app.recipes.views.recipes :refer [recipes]]
+            [app.recipes.views.recipe :refer [recipe]]
+            [app.recipes.events]
             [app.recipes.subs]
 
             [app.nav.views.nav :refer [nav]]
@@ -33,6 +35,7 @@
     :become-a-chef [become-a-chef]
     :inboxes [inboxes]
     :recipes [recipes]
+    :recipe [recipe]
     [recipes]))
 
 (defn app
