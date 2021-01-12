@@ -4,7 +4,7 @@
             [app.components.page-nav :refer [page-nav]]
             [app.recipes.views.recipe-info :refer [recipe-info]]
             [app.recipes.views.recipe-image :refer [recipe-image]]
-            ))
+            [app.recipes.views.recipe-ingredients :refer [recipe-ingredients]]))
 
 (defn recipe
   []
@@ -19,7 +19,7 @@
         [:> Box {:pb 20}
          [recipe-image]]
         [:> Box {:pb 20}
-         "Recipe Ingredients"]]
+         [recipe-ingredients]]]
        [:> Col {:xs 12 :sm 6}
         [:> Box {:pb 20}
          "Recipe Steps"]]]]]))

@@ -3,8 +3,7 @@
             ["@smooth-ui/core-sc" :refer [Box Typography]]
             ["styled-icons/fa-solid/Heart" :rename {Heart SolidHeart}]
             ["styled-icons/fa-regular/Clock" :refer [Clock]]
-            ["styled-icons/fa-regular/Heart" :refer [Heart]]
-            ))
+            ["styled-icons/fa-regular/Heart" :refer [Heart]]))
 
 (defn recipe-info
   []
