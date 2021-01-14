@@ -75,5 +75,11 @@ a:hover {
 .editable:hover {
   cursor: pointer;
   color: #334E68;
+  background: #D9E2EC;
   opacity: 0.7;
+}
+
+.editable:after {
+    content: '\2807';
+    font-size: 1.2em;
 }
