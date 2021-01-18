@@ -70,6 +70,6 @@
                                                               :name      name
                                                               :prep-time prep-time
                                                               :public?   false})
-       :dispatch-n  [[:set-active-page :recipes]
+       :dispatch-n  [[:active-page :recipes]
                      [:toggle-modal]]
        :navigate-to {:path "/recipes/"}})))

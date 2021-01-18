@@ -34,9 +34,8 @@
                                                   :href     (router/path-for :become-a-chef)
                                                   :on-click #(rf/dispatch [:active-nav :become-a-chef])}
                                        "Become a Chef"]
-                          (author?) "publish-recipe"
-                          (not author?) "request-to-cook")
-                }]
+                          author? "publish-recipe"
+                          (not author?) "request-to-cook")}]
      [:> Box
       [:> Row
        [:> Col {:xs 12 :sm 6}

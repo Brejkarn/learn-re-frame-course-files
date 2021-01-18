@@ -14,6 +14,7 @@
             [app.auth.views.log-in :refer [log-in]]
 
             [app.become-a-chef.views.become-a-chef :refer [become-a-chef]]
+            [app.become-a-chef.events]
 
             [app.inbox.views.inboxes :refer [inboxes]]
 

@@ -11,9 +11,9 @@
   []
   (let [initial-values {:id nil :desc ""}
         values         (r/atom initial-values)
-        open-modal     (fn [s]
+        open-modal     (fn [step]
                          (rf/dispatch [:toggle-modal :step-editor])
-                         (reset! values s))
+                         (reset! values step))
         save           (fn [{:keys [id desc]}]
                          (rf/dispatch [:upsert-step {:id   (or id (keyword (str "step-" (random-uuid))))
                                                      :desc (str/trim desc)}])
@@ -51,13 +51,11 @@
             [modal {:modal-name :step-editor
                     :header     "Step"
                     :body       [:<>
-                                 [:> Row
-                                  [:> Col
-                                   [form-group {:id        :desc
-                                                :label     "Description"
-                                                :type      "text"
-                                                :textarea? true
-                                                :values    values}]]]]
+                                 [form-group {:id        :desc
+                                              :label     "Description"
+                                              :type      "text"
+                                              :textarea? true
+                                              :values    values}]]
                     :footer     [:<>
                                  (when-let [step-id (:id @values)]
                                    [:a {:href     "#"
