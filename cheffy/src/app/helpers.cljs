@@ -22,3 +22,7 @@
             Math/floor
             int
             (#(str % " " (:name unit) (when (> % 1) "s") " ago")))))))
+
+(defn format-price
+  [cents]
+  (str "$" (/ (js/parseInt cents) 100)))

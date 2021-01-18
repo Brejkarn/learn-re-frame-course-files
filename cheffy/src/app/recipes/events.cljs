@@ -73,3 +73,25 @@
        :dispatch-n  [[:active-page :recipes]
                      [:toggle-modal]]
        :navigate-to {:path "/recipes/"}})))
+
+(reg-event-fx
+  :publish-recipe
+  (fn [{:keys [db]} [_ {:keys [price]}]]
+    (let [recipe-id (get-in db [:nav :active-recipe])]
+      {:db       (update-in db [:recipes recipe-id] merge {:price   price
+                                                           :public? true})
+       :dispatch [:toggle-modal]})))
+
+(reg-event-fx
+  :unpublish-recipe
+  (fn [{:keys [db]} _]
+    (let [recipe-id (get-in db [:nav :active-recipe])]
+      {:db       (assoc-in db [:recipes recipe-id :public?] false)
+       :dispatch [:toggle-modal]})))
+
+(reg-event-fx
+  :upsert-image
+  (fn [{:keys [db]} [_ {:keys [img]}]]
+    (let [recipe-id (get-in db [:nav :active-recipe])]
+      {:db       (assoc-in db [:recipes recipe-id :img] img)
+       :dispatch [:toggle-modal]})))

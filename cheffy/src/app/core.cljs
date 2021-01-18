@@ -20,6 +20,7 @@
 
             [app.recipes.views.recipes :refer [recipes]]
             [app.recipes.views.recipe :refer [recipe]]
+            [app.recipes.views.saved :refer [saved]]
             [app.recipes.events]
             [app.recipes.subs]
 
@@ -37,6 +38,7 @@
     :inboxes [inboxes]
     :recipes [recipes]
     :recipe [recipe]
+    :saved [saved]
     [recipes]))
 
 (defn app

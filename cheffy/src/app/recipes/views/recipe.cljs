@@ -7,6 +7,7 @@
             [app.recipes.views.recipe-info :refer [recipe-info]]
             [app.recipes.views.recipe-ingredients :refer [recipe-ingredients]]
             [app.recipes.views.recipe-steps :refer [recipe-steps]]
+            [app.recipes.views.publish-recipe :refer [publish-recipe]]
             [app.router :as router]))
 
 (defn recipe
@@ -34,7 +35,7 @@
                                                   :href     (router/path-for :become-a-chef)
                                                   :on-click #(rf/dispatch [:active-nav :become-a-chef])}
                                        "Become a Chef"]
-                          author? "publish-recipe"
+                          author? [publish-recipe]
                           (not author?) "request-to-cook")}]
      [:> Box
       [:> Row

@@ -23,9 +23,10 @@
             active-page @(rf/subscribe [:active-page])]
         [:<>
          (if (= active-page :recipe)
-           [:div {:class       "editable"
-                  :font-weight 700
-                  :on-click    #(open-modal {:name name :prep-time prep-time})}
+           [:> Typography {:variant     "h2"
+                           :class       "editable"
+                           :font-weight 700
+                           :on-click    #(open-modal {:name name :prep-time prep-time})}
             name]
            [:> Button {:on-click #(open-modal initial-values)}
             [:> Plus {:size 16}]])
