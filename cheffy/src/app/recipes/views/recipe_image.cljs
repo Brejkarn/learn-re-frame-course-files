@@ -36,7 +36,7 @@
                                           :type   "text"
                                           :values values}]
                  :footer     [:<>
-                              [:> Button {:on-click #(rf/dispatch [:toggle-modal nil])
+                              [:> Button {:on-click #(rf/dispatch [:toggle-modal])
                                           :variant  "light"}
                                "Cancel"]
                               [:> Button {:on-click #(save @values)}

@@ -78,7 +78,7 @@
                                     "Delete"])
                                  [:> Button {:variant  "light"
                                              :mx       10
-                                             :on-click #(rf/dispatch [:toggle-modal nil])}
+                                             :on-click #(rf/dispatch [:toggle-modal])}
                                   "Cancel"]
                                  [:> Button {:on-click #(save @values)}
                                   "Save"]]}])]]))))

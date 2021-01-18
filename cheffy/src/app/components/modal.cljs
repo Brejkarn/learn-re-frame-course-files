@@ -6,7 +6,7 @@
   [{:keys [modal-name header body footer]}]
   (let [active-modal @(rf/subscribe [:active-modal])]
     [:> Modal {:opened   (= active-modal modal-name)
-               :on-close #(rf/dispatch [:toggle-modal nil])}
+               :on-close #(rf/dispatch [:toggle-modal])}
      [:> ModalDialog
       [:> ModalContent {:border-radius 10}
        [:> Typography {:p       15
