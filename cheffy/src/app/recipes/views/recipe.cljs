@@ -7,6 +7,7 @@
             [app.recipes.views.recipe-info :refer [recipe-info]]
             [app.recipes.views.recipe-ingredients :refer [recipe-ingredients]]
             [app.recipes.views.recipe-steps :refer [recipe-steps]]
+            [app.recipes.views.request-to-cook :refer [request-to-cook]]
             [app.recipes.views.publish-recipe :refer [publish-recipe]]
             [app.router :as router]))
 
@@ -36,7 +37,7 @@
                                                   :on-click #(rf/dispatch [:active-nav :become-a-chef])}
                                        "Become a Chef"]
                           author? [publish-recipe]
-                          (not author?) "request-to-cook")}]
+                          (not author?) [request-to-cook])}]
      [:> Box
       [:> Row
        [:> Col {:xs 12 :sm 6}

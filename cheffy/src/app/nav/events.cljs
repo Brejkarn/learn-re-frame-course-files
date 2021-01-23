@@ -12,7 +12,8 @@
   (fn [db [_ {:keys [handler route-params]}]]
     (-> db
         (assoc-in [:nav :active-page] handler)
-        (assoc-in [:nav :active-recipe] (keyword (:recipe-id route-params))))))
+        (assoc-in [:nav :active-recipe] (keyword (:recipe-id route-params)))
+        (assoc-in [:nav :active-inbox] (keyword (:inbox-id route-params))))))
 
 (reg-event-db
   :active-nav
@@ -23,6 +24,11 @@
   :active-page
   (fn [db [_ active-page]]
     (assoc-in db [:nav :active-page] active-page)))
+
+(reg-event-db
+  :active-inbox
+  (fn [db [_ active-inbox]]
+    (assoc-in db [:nav :active-inbox] active-inbox)))
 
 (reg-event-db
   :toggle-modal

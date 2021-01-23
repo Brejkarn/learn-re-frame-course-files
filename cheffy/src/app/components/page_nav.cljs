@@ -23,11 +23,7 @@
                       :py          20
                       :font-weight 700}
        center]
-      center)
-    ]
-   ;[:> Box
-   ; ]
+      center)]
    [:> Box
     (when right
-      right)]
-   ])
+      right)]])

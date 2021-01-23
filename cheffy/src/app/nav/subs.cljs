@@ -12,6 +12,11 @@
     (get-in db [:nav :active-page])))
 
 (reg-sub
+  :active-inbox
+  (fn [db _]
+    (get-in db [:nav :active-inbox])))
+
+(reg-sub
   :active-modal
   (fn [db _]
     (get-in db [:nav :active-modal])))
