@@ -11,7 +11,8 @@
   (let [initial-values {:img ""}
         values         (r/atom initial-values)
         author?        @(rf/subscribe [:author?])
-        save           (fn [img]
+        save           (fn [e img]
+                         (.preventDefault e)
                          (rf/dispatch [:upsert-image img])
                          (reset! values initial-values))
         open-modal     (fn [vals]
@@ -30,13 +31,14 @@
          (when author?
            [modal {:modal-name :image-editor
                    :header     "Image"
-                   :body       [form-group {:id     :img
-                                            :label  "URL"
-                                            :type   "text"
-                                            :values values}]
+                   :body       [:form {:on-submit #(save % @values)}
+                                [form-group {:id     :img
+                                             :label  "URL"
+                                             :type   "text"
+                                             :values values}]]
                    :footer     [:<>
                                 [:> Button {:on-click #(rf/dispatch [:toggle-modal])
                                             :variant  "light"}
                                  "Cancel"]
-                                [:> Button {:on-click #(save @values)}
+                                [:> Button {:on-click #(save % @values)}
                                  "Save"]]}])]))))
