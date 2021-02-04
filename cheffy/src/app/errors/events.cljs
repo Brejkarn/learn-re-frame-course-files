@@ -1,6 +1,5 @@
 (ns app.errors.events
-  (:require [re-frame.core :refer [reg-event-db reg-event-fx after reg-cofx]]
-            [cljs.reader :refer [read-string]]))
+  (:require [re-frame.core :refer [reg-event-db]]))
 
 (reg-event-db
   :has-value?

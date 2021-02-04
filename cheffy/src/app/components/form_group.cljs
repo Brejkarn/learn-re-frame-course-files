@@ -6,7 +6,7 @@
 (defn form-group
   [{:keys [id label type values textarea? on-key-down]}]
   (let [errors      @(rf/subscribe [:errors])
-        input-error (get-in errors id)
+        input-error (get errors id)
         valid       (if input-error false nil)
         is-empty?   (str/blank? (id @values))
         validate    (fn []
@@ -18,18 +18,18 @@
      (if textarea?
        [:> Textarea {:control   true
                      :valid     valid
+                     :on-blur   validate
                      :rows      6
                      :id        id
                      :type      type
                      :value     (id @values)
-                     :on-blur   validate
                      :on-change #(swap! values assoc id (.. % -target -value))}]
        [:> Input {:control     true
                   :valid       valid
+                  :on-blur     validate
                   :id          id
                   :type        type
                   :value       (id @values)
-                  :on-blur     validate
                   :on-change   #(swap! values assoc id (.. % -target -value))
                   :on-key-down on-key-down}])
      (when input-error
