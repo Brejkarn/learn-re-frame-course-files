@@ -13,6 +13,9 @@
             [app.auth.views.sign-up :refer [sign-up]]
             [app.auth.views.log-in :refer [log-in]]
 
+            [app.errors.events]
+            [app.errors.subs]
+
             [app.become-a-chef.views.become-a-chef :refer [become-a-chef]]
             [app.become-a-chef.events]
 
